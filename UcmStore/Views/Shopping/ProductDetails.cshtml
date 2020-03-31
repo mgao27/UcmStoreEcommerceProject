@@ -1,0 +1,60 @@
+﻿@model UcmStore.Models.ClothingItem
+<!--model IEnumerable<UcmStore.Models.ClothingItem>-->
+
+@{
+    ViewBag.Title = "Product Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page Content -->
+
+
+<div class="container">
+
+    <div class="row" style="margin-top:10vh;">
+
+        <div class="col-lg-3">
+            <h1 class="my-4" style="color:#423c3c;">Mule Gear</h1>
+            <div class="list-group">
+                <a href="@Url.Action("Shirts", "Shopping")" class="list-group-item">Shirts</a>
+                <a href="@Url.Action("Sweatshirts", "Shopping")" class="list-group-item">Sweatshirts</a>
+                <a href="@Url.Action("Pants", "Shopping")" class="list-group-item">Pants</a>
+            </div>
+        </div>
+        <!-- /.col-lg-3 -->
+
+        <div class="col-lg-9" style="margin-bottom:10vh;">
+
+            <div class="card mt-4">
+                <img class="card-img-top img-fluid" style="width:30vw; height:auto;" src=@Model.picLocation alt="">
+                <div class="card-body">
+                    <h3 class="card-title">@Model.name</h3>
+                    <h4>$@Model.price.00</h4>
+                    <p class="card-text">@Model.description</p>
+                    <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                    <p>4.0 stars</p>
+                    <p>@Model.id</p>
+                    @using (Html.BeginForm("AddToCart", "Shopping"))
+                    {
+                        <label for="quantity">Quantity</label>
+                        <input type="hidden" name="Id" value="@Model.id">
+                        <input type="number" name="Qty" value="1" min="1" max="15" style="width:40px;">
+                        <input type="submit" class="btn btn-primary" value="Add to Cart" style="display:block;" />
+
+                    }
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-9 -->
+
+    </div>
+
+</div>
+<!-- /.container -->
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; UCM Mule Store</p>
+    </div>
+    <!-- /.container -->
+</footer>

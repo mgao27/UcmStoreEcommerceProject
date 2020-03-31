@@ -1,0 +1,61 @@
+﻿@model IEnumerable<UcmStore.Models.ClothingItem>
+
+@{
+    ViewBag.Title = "Sweatshirts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <div class="row" style="margin-top:10vh;">
+
+        <div class="col-lg-3">
+
+            <h1 class="my-4" style="color:##423c3c" ;>Mule Gear</h1>
+            <div class="list-group">
+                <a href="@Url.Action("Shirts", "Shopping")" class="list-group-item">Shirts</a>
+                <a href="@Url.Action("Sweatshirts", "Shopping")" class="list-group-item">Sweatshirts</a>
+                <a href="@Url.Action("Pants", "Shopping")" class="list-group-item">Pants</a>
+            </div>
+
+        </div>
+        <!-- /.col-lg-3 -->
+
+        <div class="col-lg-9" style="margin-top:5vh;">
+
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <a href="@Url.Action("ProductDetails", "Shopping", new { Id = item.id, Name = item.name, Price = item.price, Desc = item.description, picLocation = "/Content/Images/Sweatshirts/" + item.id + ".jpg" })"><img class="card-img-top" src="~/Content/Images/Sweatshirts/@(item.id).jpg" alt=""></a>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="@Url.Action("ProductDetails", "Shopping", new { Id = item.id, Name = item.name, Price = item.price, Desc = item.description, picLocation = "/Content/Images/Sweatshirts/" + item.id + ".jpg" })">@item.name</a>
+                                </h4>
+                                <h5>$@item.price.00 </h5>
+                                <p class="card-text">@item.description</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.col-lg-9 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; UCM Mule Store</p>
+    </div>
+    <!-- /.container -->
+</footer>

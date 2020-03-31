@@ -1,0 +1,49 @@
+﻿@model IEnumerable<UcmStore.Models.CartItem>
+
+@{
+    ViewBag.Title = "ShoppingCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link rel='stylesheet' href='bower_components/glyphicons-only-bootstrap/css/bootstrap.min.css' />
+</head>
+@using (Html.BeginForm("UpdateQuantity", "Shopping", FormMethod.Post))
+{
+    <table class="table table-striped" style="margin-top:15vh;">
+        <thead>
+            <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.name</td>
+                    <td>@item.Description</td>
+                    <td>@item.Price</td>
+                    <td><input type="number" name="Qty" value="@item.Quantity" min="1" max="15" style="width:40px;"></td>
+                    <td>
+                        <button type="button" onclick="location.href='@Url.Action("RemoveFromCart", "Shopping", new { clothingID = item.id })'" class="btn btn-outline-dark btn-sm">Delete</button>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+
+    </table>
+
+    <input type="submit" class="btn btn-success" value="Apply Changes" />
+
+    <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("Checkout", "Shopping")'">Submit Cart</button>
+
+}
+
+
+
